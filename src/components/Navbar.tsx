@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import { LenisContext } from '../App';
 
 const navLinks = [
   { name: 'About', href: '#about' },
@@ -15,6 +16,7 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const lenis = useContext(LenisContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +25,18 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target && lenis) {
+      lenis.scrollTo(target, {
+        duration: 2.5,
+        offset: 0,
+      });
+      setMobileMenuOpen(false);
+    }
+  };
 
   return (
     <nav 
@@ -34,9 +48,18 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <motion.a 
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            if (lenis) {
+              lenis.scrollTo(0, {
+                duration: 2.5,
+                offset: 0,
+              });
+            }
+          }}
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-display font-bold text-gradient"
+          className="text-2xl font-display font-bold text-gradient cursor-pointer"
         >
           AS.
         </motion.a>
@@ -47,10 +70,11 @@ export default function Navbar() {
             <motion.a
               key={link.name}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium text-white/70 hover:text-primary-neon transition-colors"
+              className="text-sm font-medium text-white/70 hover:text-primary-neon transition-colors cursor-pointer"
             >
               {link.name}
             </motion.a>
@@ -94,8 +118,8 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-base sm:text-lg font-medium text-white/70 active:text-primary-neon transition-colors py-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-base sm:text-lg font-medium text-white/70 active:text-primary-neon transition-colors py-2 cursor-pointer"
+                  onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.name}
                 </a>

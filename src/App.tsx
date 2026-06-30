@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, createContext } from 'react';
 import { motion } from 'motion/react';
 import Lenis from '@studio-freight/lenis';
 import Navbar from './components/Navbar';
@@ -17,8 +17,11 @@ import Contact from './components/Contact';
 import Background from './components/Background';
 import CustomCursor from './components/CustomCursor';
 
+export const LenisContext = createContext<Lenis | null>(null);
+
 export default function App() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -26,6 +29,8 @@ export default function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+
+    lenisRef.current = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -40,25 +45,27 @@ export default function App() {
   }, []);
 
   return (
-    <div ref={scrollRef} className="relative min-h-screen text-white font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
-      <CustomCursor />
-      <Background />
-      <Navbar />
-      
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Research />
-        <Milestones />
-        <Contact />
-      </motion.main>
-    </div>
+    <LenisContext.Provider value={lenisRef.current}>
+      <div ref={scrollRef} className="relative min-h-screen text-white font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+        <CustomCursor />
+        <Background />
+        <Navbar />
+        
+        <motion.main
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Research />
+          <Milestones />
+          <Contact />
+        </motion.main>
+      </div>
+    </LenisContext.Provider>
   );
 }
 
