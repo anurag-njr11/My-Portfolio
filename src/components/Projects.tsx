@@ -70,7 +70,7 @@ export default function Projects() {
 
   return (
     <Section id="projects" title="Interstellar Projects">
-      <div className="space-y-32">
+      <div className="space-y-16 sm:space-y-24 md:space-y-32">
         {/* Project 1: Cybersecurity ML Pipeline */}
         <div className="space-y-12">
           {/* Main Info Row */}

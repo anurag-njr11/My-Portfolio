@@ -146,9 +146,9 @@ export default function Hero() {
           <span className="text-[10px] font-mono tracking-[0.3em] text-blue-400 uppercase">System Terminal: Active</span>
         </motion.div>
 
-        <div className="relative mb-6 overflow-visible flex flex-col items-center">
-          <h1 className="text-6xl md:text-8xl lg:text-[9.5rem] font-display font-black tracking-tighter leading-[0.8] select-none flex flex-col items-center justify-center">
-            <span className="block mb-2 md:mb-4">
+        <div className="relative mb-4 sm:mb-6 overflow-visible flex flex-col items-center">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[9.5rem] font-display font-black tracking-tighter leading-[0.8] select-none flex flex-col items-center justify-center">
+            <span className="block mb-1 sm:mb-2 md:mb-4">
               <LetterReveal text="ANURAG" delayOffset={0.3} />
             </span>
             <span className="block">
@@ -157,9 +157,9 @@ export default function Hero() {
           </h1>
         </div>
 
-        <div className="h-12 md:h-16 overflow-hidden mb-12 flex items-center justify-center">
-          <p className="text-xl md:text-3xl text-white/60 font-light font-mono flex items-center">
-            <span className="text-primary-neon mr-2">{">"}</span>
+        <div className="h-8 sm:h-12 md:h-16 overflow-hidden mb-8 sm:mb-12 flex items-center justify-center">
+          <p className="text-sm sm:text-base md:text-2xl lg:text-3xl text-white/60 font-light font-mono flex items-center">
+            <span className="text-primary-neon mr-1 sm:mr-2">{">"}\"</span>
             <Typewriter 
               text={roles[roleIndex]} 
               delay={50} 
@@ -177,16 +177,16 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="flex flex-col md:flex-row items-center justify-center gap-6"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 w-full px-2 sm:px-0"
         >
           <MagneticButton>
             <a
               href="#projects"
-              className="group relative inline-flex px-8 py-4 bg-primary-neon text-black font-bold rounded-full overflow-hidden transition-all active:scale-95"
+              className="group relative inline-flex px-5 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-primary-neon text-black font-bold rounded-full overflow-hidden transition-all active:scale-95 w-full sm:w-auto justify-center"
             >
               <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
               <span className="relative z-10 flex items-center">
-                View Projects <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={18} />
+                View Projects <ArrowRight className="ml-1 sm:ml-2 group-hover:translate-x-1 transition-transform" size={16} />
               </span>
             </a>
           </MagneticButton>
@@ -194,7 +194,7 @@ export default function Hero() {
           <MagneticButton>
             <a
               href="#contact"
-              className="inline-flex px-8 py-4 glass-card text-white font-bold rounded-full transition-all hover:bg-white/10 active:scale-95 border-white/20 hover:border-white/40"
+              className="inline-flex px-5 sm:px-8 py-3 sm:py-4 text-sm sm:text-base glass-card text-white font-bold rounded-full transition-all hover:bg-white/10 active:scale-95 border-white/20 hover:border-white/40 w-full sm:w-auto justify-center"
             >
               Contact Me
             </a>

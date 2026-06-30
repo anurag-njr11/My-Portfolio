@@ -70,33 +70,33 @@ export default function Skills() {
     <Section id="skills" title="Technical Expertise">
       <div className="max-w-6xl mx-auto w-full">
         {/* Tabs Manager */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12 p-2 glass-card rounded-2xl border-white/5">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8 sm:mb-12 p-2 glass-card rounded-xl md:rounded-2xl border-white/5">
           {skillCategories.map((category) => (
             <button
               key={category.id}
               onClick={() => setActiveTab(category.id)}
               className={cn(
-                "relative px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 flex items-center space-x-2",
+                "relative px-3 sm:px-6 py-2 sm:py-3 rounded-lg md:rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 flex items-center space-x-1 sm:space-x-2 touch-manipulation",
                 activeTab === category.id ? "text-white" : "text-white/40 hover:text-white/70"
               )}
             >
               {activeTab === category.id && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-white/5 border border-white/10 rounded-xl"
+                  className="absolute inset-0 bg-white/5 border border-white/10 rounded-lg md:rounded-xl"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <span className={cn("relative z-10", activeTab === category.id && "text-blue-400")}>
-                {category.icon}
+              <span className={cn("relative z-10 flex-shrink-0", activeTab === category.id && "text-blue-400")}>
+                {React.cloneElement(category.icon as React.ReactElement, { size: 16 })}
               </span>
-              <span className="relative z-10">{category.title}</span>
+              <span className="relative z-10 hidden sm:inline">{category.title}</span>
             </button>
           ))}
         </div>
 
         {/* Content Area */}
-        <div className="relative min-h-[400px]">
+        <div className="relative min-h-[300px] sm:min-h-[400px]">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -107,7 +107,7 @@ export default function Skills() {
                 duration: 0.6, 
                 ease: [0.16, 1, 0.3, 1] 
               }}
-              className="glass-card p-10 rounded-3xl border-white/5 relative overflow-hidden"
+              className="glass-card p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl border-white/5 relative overflow-hidden"
             >
               {/* Category-specific background glow */}
               <div className={cn(
@@ -115,24 +115,24 @@ export default function Skills() {
                 activeCategory.colorClass.replace('from-', 'from-').replace('to-', 'to-')
               )} />
 
-              <div className="flex items-center space-x-4 mb-10">
-                <div className="p-3 bg-white/5 rounded-2xl text-blue-400">
-                  {React.cloneElement(activeCategory.icon as React.ReactElement, { size: 28 })}
+              <div className="flex items-center space-x-3 sm:space-x-4 mb-8 sm:mb-10">
+                <div className="p-2 sm:p-3 bg-white/5 rounded-lg md:rounded-2xl text-blue-400 flex-shrink-0">
+                  {React.cloneElement(activeCategory.icon as React.ReactElement, { size: 20 })}
                 </div>
-                <h3 className="text-3xl font-display font-medium text-white">{activeCategory.title}</h3>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-white">{activeCategory.title}</h3>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
               {activeCategory.skills.map((skill, sIdx) => (
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.1 + (sIdx * 0.03) }}
-                  className="px-4 py-3 bg-white/5 border border-white/10 rounded-xl flex items-center justify-between group hover:border-blue-500/50 hover:bg-blue-500/5 transition-all cursor-default"
+                  className="px-3 sm:px-4 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-lg md:rounded-xl flex items-center justify-between group hover:border-blue-500/50 hover:bg-blue-500/5 transition-all cursor-default touch-manipulation"
                 >
-                  <span className="text-sm font-mono text-white/70 uppercase tracking-wider group-hover:text-blue-400">{skill.name}</span>
-                  <div className="w-1 h-1 rounded-full bg-blue-500/30 group-hover:bg-blue-500 group-hover:shadow-[0_0_8px_#3b82f6]" />
+                  <span className="text-xs sm:text-sm font-mono text-white/70 uppercase tracking-wider group-hover:text-blue-400 truncate">{skill.name}</span>
+                  <div className="w-1 h-1 rounded-full bg-blue-500/30 group-hover:bg-blue-500 group-hover:shadow-[0_0_8px_#3b82f6] ml-2 flex-shrink-0" />
                 </motion.div>
               ))}
             </div>

@@ -45,7 +45,7 @@ const leadership = [
 export default function Milestones() {
   return (
     <Section id="milestones" title="Excellence Beyond Code">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
         {/* Achievements Column */}
         <div id="achievements">
           <div className="flex items-center space-x-3 mb-10">

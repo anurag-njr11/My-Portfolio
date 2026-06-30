@@ -89,23 +89,23 @@ export default function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-black/95 border-b border-white/10 absolute top-full left-0 right-0 overflow-hidden"
           >
-            <div className="flex flex-col p-6 space-y-4">
+            <div className="flex flex-col p-4 space-y-3">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-lg font-medium text-white/70"
+                  className="text-base sm:text-lg font-medium text-white/70 active:text-primary-neon transition-colors py-2"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link.name}
                 </a>
               ))}
               <div className="flex items-center space-x-6 pt-4 border-t border-white/10">
-                <a href="https://github.com/anurag-njr11" target="_blank" rel="noreferrer" className="text-white/60">
-                  <Github size={24} />
+                <a href="https://github.com/anurag-njr11" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white transition-colors p-2">
+                  <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/anurag-singh-a67498307/" target="_blank" rel="noreferrer" className="text-white/60">
-                  <Linkedin size={24} />
+                <a href="https://www.linkedin.com/in/anurag-singh-a67498307/" target="_blank" rel="noreferrer" className="text-white/60 hover:text-white transition-colors p-2">
+                  <Linkedin size={20} />
                 </a>
               </div>
             </div>

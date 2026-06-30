@@ -11,7 +11,7 @@ export default function Research() {
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="glass-card p-10 rounded-3xl relative border-primary-purple/20 overflow-hidden"
+           className="glass-card p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl relative border-primary-purple/20 overflow-hidden"
         >
           <div className="absolute top-0 right-0 p-8 opacity-5">
             <BookOpen size={120} />

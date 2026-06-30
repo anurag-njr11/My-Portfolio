@@ -58,3 +58,68 @@
   @apply bg-white/5 rounded-full hover:bg-white/10 transition-colors;
 }
 
+/* Mobile Optimizations */
+@layer utilities {
+  /* Touch-friendly spacing for mobile */
+  @media (max-width: 640px) {
+    input, textarea, button, a {
+      min-height: 44px; /* iOS recommended touch target size */
+    }
+  }
+
+  /* Reduce animation on lower-end devices */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Better mobile text sizing */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better link targets on mobile */
+  a, button {
+    @apply transition-colors duration-200;
+  }
+
+  @media (hover: hover) {
+    a:hover, button:hover {
+      @apply opacity-80;
+    }
+  }
+
+  @media (hover: none) {
+    a:active, button:active {
+      @apply opacity-60;
+    }
+  }
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  body {
+    scrollbar-width: none;
+  }
+}
